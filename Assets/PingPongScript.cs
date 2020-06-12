@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class PingPongScript : MonoBehaviour
 {
+
+    private Touch touch;
+    private Vector2 startPos, direction;
+    float touchTImeStart, timeInterval; //calculate swipe time to control throw force in z direction
+
+    [SerializeField]
+    float throwForceInXandY = 1f; //control throw force of x and y direction
+
+    [SerializeField]
+    float throwForceInZ = 50f; //control throw force of z direction
+
     void Start()
     {
         //Keep ball floating until player can interact with it
@@ -16,12 +27,26 @@ public class PingPongScript : MonoBehaviour
         if(Input.touchCount > 0)
         {
             //Get touch position
-            Touch touch = Input.GetTouch(0);
-            Vector3 touchPos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, GetComponent<Transform>().position.z));
+            touch = Input.GetTouch(0);
 
-            //Check if player touching ball
-            Debug.Log(touchPos.x + "," + touchPos.y + "," + touchPos.z);
+            //Check swipe
+            switch (touch.phase)
+            {
+                //Screen touch
+                case TouchPhase.Began:
+                    touchTImeStart = Time.time;
+                    startPos = touch.position;
+                    break;
+                // Release your finger
+                case TouchPhase.Ended:
+                    timeInterval = Time.time - touchTImeStart;
+                    direction = touch.position - startPos;
+                    //Add force to ball depending on direction, swipe time and throw force
+                    //TODO: Add force to y direction to give a thowing motion
+                    GetComponent<Rigidbody>().AddForce(-direction.x * throwForceInXandY,-direction.y * throwForceInXandY, throwForceInZ/timeInterval);
+                    GetComponent<Rigidbody>().useGravity = true;
+                    break;
+            }
         }
-
     }
 }

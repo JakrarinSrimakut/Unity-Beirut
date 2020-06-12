@@ -923,6 +923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ceb195adf261842937cdbbf7efebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwForceInXandY: 1
+  throwForceInZ: 25
 --- !u!1 &1831883546
 GameObject:
   m_ObjectHideFlags: 0
