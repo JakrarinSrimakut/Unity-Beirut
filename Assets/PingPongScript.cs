@@ -13,7 +13,7 @@ public class PingPongScript : MonoBehaviour
     float throwForceInXandY = 1f; //control throw force of x and y direction
 
     [SerializeField]
-    float throwForceInZ = 50f; //control throw force of z direction
+    float throwForceInZ = 1f; //control throw force of z direction
 
     void Start()
     {
@@ -43,7 +43,7 @@ public class PingPongScript : MonoBehaviour
                     direction = touch.position - startPos;
                     //Add force to ball depending on direction, swipe time and throw force
                     //TODO: Add force to y direction to give a thowing motion
-                    GetComponent<Rigidbody>().AddForce(-direction.x * throwForceInXandY,-direction.y * throwForceInXandY, throwForceInZ/timeInterval);
+                    GetComponent<Rigidbody>().AddForce(direction.x * throwForceInXandY,direction.y * throwForceInXandY, throwForceInZ/timeInterval);
                     GetComponent<Rigidbody>().useGravity = true;
                     break;
             }
