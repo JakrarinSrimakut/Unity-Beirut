@@ -45,12 +45,15 @@ public class PingPongScript : MonoBehaviour
                     //Add force to ball depending on direction, swipe time and throw force
                     GetComponent<Rigidbody>().AddForce(direction.x * throwForceInXandY,direction.y * throwForceInXandY, throwForceInZ/timeInterval);
                     GetComponent<Rigidbody>().useGravity = true;
+                    //TODO: Test when ball goes in cup that the reset ball from trigger will cause problem with the one below .If so set a boolean 
+                    //check for ballEnterCup to not trigger Reset ball below
+                    //
                     Invoke("ResetBall", 3f);
                     break;
             }
         }
     }
-    void ResetBall()
+    public void ResetBall()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         GetComponent<Rigidbody>().angularVelocity = new Vector3(0f, 0f, 0f);
