@@ -707,17 +707,17 @@ PrefabInstance:
     - target: {fileID: 2468781235806874762, guid: d60e3993cb0eb95439ab3a13bb308bf8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 2468781235806874762, guid: d60e3993cb0eb95439ab3a13bb308bf8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0726
+      value: 1.379
       objectReference: {fileID: 0}
     - target: {fileID: 2468781235806874762, guid: d60e3993cb0eb95439ab3a13bb308bf8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.58
+      value: 0.57
       objectReference: {fileID: 0}
     - target: {fileID: 2468781235806874762, guid: d60e3993cb0eb95439ab3a13bb308bf8,
         type: 3}
@@ -757,6 +757,11 @@ PrefabInstance:
     - target: {fileID: 2468781235806874762, guid: d60e3993cb0eb95439ab3a13bb308bf8,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468781235806874764, guid: d60e3993cb0eb95439ab3a13bb308bf8,
+        type: 3}
+      propertyPath: throwForceInZ
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1182,6 +1187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ping Pong Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 2468781235806874758, guid: d60e3993cb0eb95439ab3a13bb308bf8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2468781235806874761, guid: d60e3993cb0eb95439ab3a13bb308bf8,
         type: 3}

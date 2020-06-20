@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class PlasticCupScript : MonoBehaviour
 {
+    Collider col;
     void OnTriggerEnter(Collider col)
     {
+        this.col = col;
+
         if(col.tag == "Ping Pong Ball")
         {
             Debug.Log("Ping Pong Ball Entered");
-            //TODO: Score Point, Remove Cup, Reset ball
-            col.GetComponent<PingPongScript>().Invoke("ResetBall", 1f);
+            //TODO: Score Point
+            Invoke("ResetRound", 3);
         }
+    }
+
+    void ResetRound()
+    {
+        col.GetComponent<PingPongScript>().setBallInCupTrue();
+        col.GetComponent<PingPongScript>().ResetBall();
+        Destroy(gameObject);//remove cup
     }
 }

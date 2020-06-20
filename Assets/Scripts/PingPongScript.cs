@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PingPongScript : MonoBehaviour
 {
+    public int waitTime = 4;
+
     private Touch touch;
     private Vector2 startPos, direction;
     private float touchTImeStart, timeInterval; //calculate swipe time to control throw force in z direction
     private Vector3 ballStartPos;
+    private bool ballInCup = false;
+    
 
     [SerializeField]
     float throwForceInXandY = 1f; //control throw force of x and y direction
@@ -47,12 +51,31 @@ public class PingPongScript : MonoBehaviour
                     GetComponent<Rigidbody>().useGravity = true;
                     //TODO: Test when ball goes in cup that the reset ball from trigger will cause problem with the one below .If so set a boolean 
                     //check for ballEnterCup to not trigger Reset ball below
-                    //
-                    Invoke("ResetBall", 3f);
+                    
+                    Invoke("ResetBallWhenMissed", waitTime);//wait to allow ball enough time to enter cup before checking if missed
                     break;
             }
         }
     }
+    //check if ball is in cup if so dont run ResetBall() because that will be done from PlasticCupScript to be done at the same time with removeCup()
+    public void ResetBallWhenMissed()
+    {
+        if (!ballInCup)//ball missed reset ball
+        {
+            Debug.Log("Ball not in cup");
+            ResetBall();
+        }
+        else//ball in cup reset ballInCup to false for next throw
+        {
+            ballInCup = false;
+        }
+    }
+
+    public void setBallInCupTrue()
+    {
+        ballInCup = true;
+    }
+
     public void ResetBall()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
