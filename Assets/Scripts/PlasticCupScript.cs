@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlasticCupScript : MonoBehaviour
 {
+    public int resetRoundTime;
     Collider col;
     void OnTriggerEnter(Collider col)
     {
@@ -13,7 +14,7 @@ public class PlasticCupScript : MonoBehaviour
         {
             Debug.Log("Ping Pong Ball Entered");
             //TODO: Score Point
-            Invoke("ResetRound", 3);
+            Invoke("ResetRound", resetRoundTime);
         }
     }
 

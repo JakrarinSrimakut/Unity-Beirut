@@ -28,12 +28,14 @@ public class PingPongScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Check if player touching screen
-        if(Input.touchCount > 0)
+        //Check for touch on the screen when ball is at start position to reduce processing
+        if(GetComponent<Transform>().position == ballStartPos && Input.touchCount > 0)
         {
+            
             //Get touch position
             touch = Input.GetTouch(0);
 
+            
             //Check swipe
             switch (touch.phase)
             {
@@ -49,8 +51,6 @@ public class PingPongScript : MonoBehaviour
                     //Add force to ball depending on direction, swipe time and throw force
                     GetComponent<Rigidbody>().AddForce(direction.x * throwForceInXandY,direction.y * throwForceInXandY, throwForceInZ/timeInterval);
                     GetComponent<Rigidbody>().useGravity = true;
-                    //TODO: Test when ball goes in cup that the reset ball from trigger will cause problem with the one below .If so set a boolean 
-                    //check for ballEnterCup to not trigger Reset ball below
                     
                     Invoke("ResetBallWhenMissed", waitTime);//wait to allow ball enough time to enter cup before checking if missed
                     break;
